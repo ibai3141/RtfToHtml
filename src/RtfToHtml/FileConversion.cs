@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 namespace RtfToHtml;
 public static class FileConversion
 {
@@ -7,13 +7,13 @@ public static class FileConversion
         var inputPath = Path.GetFullPath(input);
         var outputPath = Path.GetFullPath(output);
         if (string.Equals(inputPath, outputPath, StringComparison.OrdinalIgnoreCase))
-            throw new ArgumentException("El archivo de entrada y el de salida deben ser diferentes.");
+            throw new ArgumentException("The input and output files must be different.");
         string html;
         using (var source = File.OpenRead(inputPath))
         {
             Span<byte> signature = stackalloc byte[5];
             if (source.Read(signature) != 5 || !signature.SequenceEqual("{\\rtf"u8))
-                throw new InvalidDataException("El archivo seleccionado no es un documento RTF válido.");
+                throw new InvalidDataException("The selected file is not a valid RTF document.");
             source.Position = 0;
             html = HtmlConverter.Convert(source);
         }

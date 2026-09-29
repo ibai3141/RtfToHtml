@@ -1,52 +1,49 @@
 # RtfToHTML
 
-Prototipo Windows de conversión RTF a HTML con RtfPipe integrado. No requiere Word ni LibreOffice. Mantiene tablas y estilos, convierte imágenes WMF/EMF a PNG incrustado y respeta la justificación centrada/derecha de las tablas del RTF.
+A Windows desktop app for converting RTF documents to standalone HTML. The app can be opened with a double click for file selection, or called from another application with two file paths.
 
-```powershell
-.\artifacts\publish\RtfToHTML.exe ".\samples\Sobótka_1.rtf" ".\salida.html"
+## For customers
+
+1. Extract the ZIP to a folder.
+2. Open `RtfToHTML.exe`.
+3. Click **Browse…** and select an `.rtf` document.
+4. Click **Save as…** and choose where to save the `.html` file.
+5. Click **Convert to HTML**. When it finishes, click **Open HTML** to review the result.
+
+The original RTF is kept. Images are embedded in the HTML. If the output file already exists, the app asks before replacing it. Use your browser's print preview to check page breaks and margins.
+
+## Command-line integration
+
+```text
+RtfToHTML.exe "C:\\Documents\\input.rtf" "C:\\Documents\\output.html"
 ```
 
-En modo consola, dos parámetros obligatorios: archivo RTF de entrada y ruta HTML de salida. El directorio de salida debe existir. Un HTML existente se reemplaza solo después de completar la conversión. Códigos: 0 correcto, 1 error de conversión/archivo, 2 número de parámetros incorrecto. Los errores se escriben en stderr.
+With no arguments, the app opens its window. With two paths, it converts without showing a window and replaces an existing output file. The calling application should wait for it to exit. Exit codes: `0` success, `1` conversion or file error, `2` invalid arguments. Errors are written to stderr.
 
-## Compilar y publicar
+## Build and publish
 
-Windows y SDK .NET 9 para desarrollar:
+On Windows with the .NET 9 SDK:
 
 ```powershell
 dotnet build src/RtfToHtml
 dotnet publish src/RtfToHtml -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o artifacts/publish
 ```
 
-La publicación incluye el runtime: no exige instalar .NET en el equipo destino. Distribuir también RtfPipe.LICENSE.txt. El ejecutable usa GDI+ de Windows para rasterizar las imágenes vectoriales.
+The published app includes the .NET runtime. It does not require Word or LibreOffice. Keep and distribute `RtfPipe.LICENSE.txt` with the executable. GDI+ on Windows rasterizes vector images.
 
-## Verificación
+## Tests
 
-Con Microsoft Edge instalado:
+With Microsoft Edge installed:
 
 ```powershell
 dotnet run --project tests/Regression -- .
-```
-
-El ensayo comprueba geometría de tablas izquierda/centro/derecha, sangría izquierda, texto de celdas, cabeceras y tablas anidadas. Convierte los seis archivos de samples y compara texto visible (ignorando espacios), filas, tablas e imágenes con la evaluación anterior. Comprueba la posición del bloque del cliente en Sobótka_1 en medios pantalla e impresión. Guarda resultados, HTML, capturas y PDF en artifacts/alignment.
-
-Playwright y Edge solo se utilizan para las pruebas, no para convertir. Aspose permanece únicamente en el proyecto histórico evaluation/LibraryEvaluation; el nuevo ejecutable no lo referencia.
-
-## Alcance de la corrección
-
-RtfPipe reconocía trqc/trqr, pero no trasladaba esos tokens al CSS de la tabla. La copia local en vendor/RtfPipe corrige ese recorrido. La alineación procede de la primera fila del RTF, sin reglas por nombre de archivo o texto del cliente. Ver vendor/RtfPipe/LOCAL_CHANGES.md.
-
-La corrección no garantiza una paginación idéntica a WordPad: siguen pendientes de validación los márgenes de página, fuentes, espaciado vertical y otros tipos de posicionamiento. La rasterización actual conserva el lienzo de la imagen; resolución y recorte requieren más validación con documentos distintos.
-
-samples contiene copias de los seis RTF proporcionados. evaluation conserva los ensayos previos y sus rutas históricas; artifacts contiene las salidas nuevas y queda excluido de Git. Los documentos originales no se modifican.
-
-## Ventana para clientes
-
-Abre `artifacts/publish/RtfToHTML.exe` con doble clic, sin argumentos. Selecciona el RTF, elige la carpeta y el nombre del HTML con «Guardar como…» y pulsa «Convertir a HTML». Después puedes abrir el resultado desde la propia ventana. Se pide confirmación antes de reemplazar un HTML existente. La conversión se ejecuta en segundo plano para mantener la ventana disponible; se impide cerrarla mientras escribe el resultado.
-
-Con dos rutas como argumentos, el mismo ejecutable convierte sin abrir la ventana y conserva los códigos de salida. Al invocarlo desde PowerShell, usa `Start-Process -Wait -PassThru` si necesitas esperar explícitamente a este ejecutable gráfico y consultar `ExitCode`.
-
-Prueba del flujo de la ventana (abre y cierra una ventana de prueba):
-
-```powershell
 dotnet run --project tests/GuiSmoke -- .
 ```
+
+The regression tests check left, centered and right table alignment, including nested tables, and compare conversions for the six sample documents. The GUI smoke test exercises validation and conversion. Edge and Playwright are test-only dependencies; the converter does not use them.
+
+## Conversion notes
+
+The local RtfPipe changes carry the table alignment tokens `trqc` and `trqr` into CSS, using the first row's alignment. See `vendor/RtfPipe/LOCAL_CHANGES.md` for the upstream revision and patch notes.
+
+The conversion has not been certified for identical pagination to WordPad. Page margins, fonts, vertical spacing and other positioning can vary with the source document and print environment. The samples are copies of the six supplied RTF files. `artifacts` contains generated output and is excluded from Git.
