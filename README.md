@@ -6,7 +6,7 @@ Prototipo Windows de conversión RTF a HTML con RtfPipe integrado. No requiere W
 .\artifacts\publish\RtfToHTML.exe ".\samples\Sobótka_1.rtf" ".\salida.html"
 ```
 
-Dos parámetros obligatorios: archivo RTF de entrada y ruta HTML de salida. El directorio de salida debe existir. Un HTML existente se reemplaza solo después de completar la conversión. Códigos: 0 correcto, 1 error de conversión/archivo, 2 número de parámetros incorrecto. Los errores se escriben en stderr.
+En modo consola, dos parámetros obligatorios: archivo RTF de entrada y ruta HTML de salida. El directorio de salida debe existir. Un HTML existente se reemplaza solo después de completar la conversión. Códigos: 0 correcto, 1 error de conversión/archivo, 2 número de parámetros incorrecto. Los errores se escriben en stderr.
 
 ## Compilar y publicar
 
@@ -38,3 +38,15 @@ RtfPipe reconocía trqc/trqr, pero no trasladaba esos tokens al CSS de la tabla.
 La corrección no garantiza una paginación idéntica a WordPad: siguen pendientes de validación los márgenes de página, fuentes, espaciado vertical y otros tipos de posicionamiento. La rasterización actual conserva el lienzo de la imagen; resolución y recorte requieren más validación con documentos distintos.
 
 samples contiene copias de los seis RTF proporcionados. evaluation conserva los ensayos previos y sus rutas históricas; artifacts contiene las salidas nuevas y queda excluido de Git. Los documentos originales no se modifican.
+
+## Ventana para clientes
+
+Abre `artifacts/publish/RtfToHTML.exe` con doble clic, sin argumentos. Selecciona el RTF, elige la carpeta y el nombre del HTML con «Guardar como…» y pulsa «Convertir a HTML». Después puedes abrir el resultado desde la propia ventana. Se pide confirmación antes de reemplazar un HTML existente. La conversión se ejecuta en segundo plano para mantener la ventana disponible; se impide cerrarla mientras escribe el resultado.
+
+Con dos rutas como argumentos, el mismo ejecutable convierte sin abrir la ventana y conserva los códigos de salida. Al invocarlo desde PowerShell, usa `Start-Process -Wait -PassThru` si necesitas esperar explícitamente a este ejecutable gráfico y consultar `ExitCode`.
+
+Prueba del flujo de la ventana (abre y cierra una ventana de prueba):
+
+```powershell
+dotnet run --project tests/GuiSmoke -- .
+```
