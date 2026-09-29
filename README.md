@@ -12,6 +12,8 @@ A Windows desktop app for converting RTF documents to standalone HTML. The app c
 
 The original RTF is kept. Images are embedded in the HTML. If the output file already exists, the app asks before replacing it. Use your browser's print preview to check page breaks and margins.
 
+The app remembers the last output folder in `%LOCALAPPDATA%\RtfToHTML\settings.json`. When you select another RTF, it suggests an HTML file with the same name in that folder. The **Save as…** dialog also opens there. If the saved folder is no longer available, the app falls back to the RTF's folder.
+
 ## Command-line integration
 
 ```text
@@ -40,7 +42,7 @@ dotnet run --project tests/Regression -- .
 dotnet run --project tests/GuiSmoke -- .
 ```
 
-The regression tests check left, centered and right table alignment, including nested tables, and compare conversions for the six sample documents. The GUI smoke test exercises validation and conversion. Edge and Playwright are test-only dependencies; the converter does not use them.
+The regression tests check left, centered and right table alignment, including nested tables, and verify template fields, table counts and images for the six sample documents. The GUI smoke test exercises validation, conversion and saved output-folder preferences. Edge and Playwright are test-only dependencies; the converter does not use them.
 
 ## Conversion notes
 

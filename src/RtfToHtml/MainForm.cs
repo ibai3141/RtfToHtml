@@ -2,6 +2,7 @@ using System.Diagnostics;
 namespace RtfToHtml;
 public sealed class MainForm : Form
 {
+    private readonly OutputLocationPreferences preferences = new();
     private readonly TextBox input = new() { Name = "InputPath", Dock = DockStyle.Fill, AccessibleName = "RTF file" };
     private readonly TextBox output = new() { Name = "OutputPath", Dock = DockStyle.Fill, AccessibleName = "Output HTML file" };
     private readonly Button browse = new() { Text = "Browse…", AutoSize = true };
@@ -66,7 +67,7 @@ public sealed class MainForm : Form
         using var dialog = new OpenFileDialog { Title = "Select an RTF document", Filter = "RTF document (*.rtf)|*.rtf", CheckFileExists = true, Multiselect = false };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
         input.Text = dialog.FileName;
-        output.Text = Path.ChangeExtension(dialog.FileName, ".html");
+        output.Text = preferences.SuggestOutputPath(dialog.FileName);
     }
     private void SelectOutput()
     {
@@ -77,11 +78,18 @@ public sealed class MainForm : Form
             {
                 var path = Path.GetFullPath(output.Text.Trim());
                 dialog.FileName = Path.GetFileName(path);
-                if (Directory.Exists(Path.GetDirectoryName(path))) dialog.InitialDirectory = Path.GetDirectoryName(path);
+                if (preferences.LastOutputDirectory is { } rememberedDirectory)
+                    dialog.InitialDirectory = rememberedDirectory;
+                else if (Directory.Exists(Path.GetDirectoryName(path)))
+                    dialog.InitialDirectory = Path.GetDirectoryName(path);
             }
         }
         catch (ArgumentException) { }
-        if (dialog.ShowDialog(this) == DialogResult.OK) output.Text = dialog.FileName;
+        if (dialog.ShowDialog(this) == DialogResult.OK)
+        {
+            output.Text = dialog.FileName;
+            preferences.RememberOutputPath(dialog.FileName);
+        }
     }
     private void ResetResult()
     {
@@ -108,6 +116,7 @@ public sealed class MainForm : Form
             SetBusy(true);
             status.Text = "Converting document…";
             await Task.Run(() => FileConversion.Convert(source, destination));
+            preferences.RememberOutputPath(destination);
             generatedFile = destination;
             open.Enabled = true;
             status.ForeColor = Color.FromArgb(21, 128, 61);

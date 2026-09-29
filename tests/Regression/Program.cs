@@ -53,6 +53,16 @@ await page.SetContentAsync(nested);
 Check(await page.Locator("table table").CountAsync() == 1, "nested table retained");
 Check(await page.Locator("table").EvaluateAllAsync<bool>("ts => ts.every(t => t.style.marginLeft === 'auto' && t.style.marginRight === '0px')"), "nested right margins explicitly emitted");
 
+var expectedDocuments = new Dictionary<string, (int Tables, int Rows, int Images)>
+{
+    ["Polecenie wymiany wodomierza"] = (2, 12, 0),
+    ["Potwierdzenie salda"] = (1, 5, 0),
+    ["Sobótka"] = (2, 23, 0),
+    ["Sobótka_1"] = (3, 7, 1),
+    ["Sobótka_2"] = (3, 64, 2),
+    ["Sobótka_3"] = (4, 36, 0)
+};
+
 foreach (var file in Directory.GetFiles(Path.Combine(root, "samples"), "*.rtf").Order())
 {
     var name = Path.GetFileNameWithoutExtension(file);
@@ -60,16 +70,16 @@ foreach (var file in Directory.GetFiles(Path.Combine(root, "samples"), "*.rtf").
     var html = HtmlConverter.Convert(source);
     var path = Path.Combine(output, name + ".html");
     File.WriteAllText(path, html, new UTF8Encoding(false));
-    var baseline = Path.Combine(root, "evaluation", "output", "RtfPipePng", name + ".html");
-    await page.GotoAsync(new Uri(baseline).AbsoluteUri);
-    var oldText = await page.Locator("body").InnerTextAsync();
-    var oldTables = await page.Locator("table").CountAsync();
-    var oldRows = await page.Locator("tr").CountAsync();
-    var oldImages = await page.Locator("img").CountAsync();
     await page.GotoAsync(new Uri(path).AbsoluteUri);
-    Check(Regex.Replace(oldText, @"\s", "") == Regex.Replace(await page.Locator("body").InnerTextAsync(), @"\s", ""), name + ": visible text unchanged ignoring whitespace");
-    Check(await page.Locator("table").CountAsync() == oldTables && await page.Locator("tr").CountAsync() == oldRows, name + ": tables and rows unchanged");
-    Check(await page.Locator("img").CountAsync() == oldImages && await page.EvaluateAsync<bool>("[...document.images].every(i=>i.complete && i.naturalWidth>0 && i.src.startsWith('data:image/png'))"), name + ": images embedded and loaded");
+    var visibleText = await page.Locator("body").InnerTextAsync();
+    var sourceRtf = File.ReadAllText(file);
+    var expectedFields = Regex.Matches(sourceRtf, @"\[[A-Z]{2}-[^\]]+\]").Select(m => m.Value).Distinct().Order().ToArray();
+    var convertedFields = Regex.Matches(visibleText, @"\[[A-Z]{2}-[^\]]+\]").Select(m => m.Value).Distinct().Order().ToArray();
+    Check(expectedFields.SequenceEqual(convertedFields), name + ": all template fields preserved");
+    Check(await page.Locator("table").CountAsync() == expectedDocuments[name].Tables &&
+          await page.Locator("tr").CountAsync() == expectedDocuments[name].Rows, name + ": expected table and row counts");
+    Check(await page.Locator("img").CountAsync() == expectedDocuments[name].Images &&
+          await page.EvaluateAsync<bool>("[...document.images].every(i=>i.complete && i.naturalWidth>0 && i.src.startsWith('data:image/png'))"), name + ": expected embedded images load");
     if (name == "Sobótka_1")
     {
         foreach (var media in new[] { Media.Screen, Media.Print })

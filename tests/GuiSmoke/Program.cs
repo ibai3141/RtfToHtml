@@ -33,7 +33,18 @@ internal static class Program
   until=DateTime.UtcNow.AddSeconds(30);
   while(!convert.Enabled && DateTime.UtcNow<until) { Application.DoEvents(); Thread.Sleep(10); }
   if(File.Exists(output.Text)||open.Enabled||!status.Text.Contains("valid RTF")) throw new Exception("Invalid file validation failed");
-  Console.WriteLine("PASS: GUI empty fields, conversion, result activation, stale result reset, extension validation, invalid RTF");
+  var preferenceDir=Path.Combine(root,"artifacts","preference-test-"+Guid.NewGuid().ToString("N"));
+  Directory.CreateDirectory(preferenceDir);
+  var settingsFile=Path.Combine(root,"artifacts","settings-test-"+Guid.NewGuid().ToString("N"),"settings.json");
+  var firstRun=new OutputLocationPreferences(settingsFile);
+  if(firstRun.SuggestOutputPath(Path.Combine(root,"samples","first.rtf"))!=Path.Combine(root,"samples","first.html")) throw new Exception("Initial destination fallback failed");
+  firstRun.RememberOutputPath(Path.Combine(preferenceDir,"first.html"));
+  var secondRun=new OutputLocationPreferences(settingsFile);
+  if(secondRun.LastOutputDirectory!=preferenceDir) throw new Exception("Output folder did not persist between app runs");
+  if(secondRun.SuggestOutputPath(Path.Combine(root,"samples","second.rtf"))!=Path.Combine(preferenceDir,"second.html")) throw new Exception("Next RTF did not reuse the remembered output folder");
+  Directory.Delete(preferenceDir);
+  if(secondRun.LastOutputDirectory!=null||secondRun.SuggestOutputPath(Path.Combine(root,"samples","third.rtf"))!=Path.Combine(root,"samples","third.html")) throw new Exception("Unavailable saved folder fallback failed");
+  Console.WriteLine("PASS: output folder preference persists across instances and falls back when unavailable");  Console.WriteLine("PASS: GUI empty fields, conversion, result activation, stale result reset, extension validation, invalid RTF");
   form.Close();
  }
 }
