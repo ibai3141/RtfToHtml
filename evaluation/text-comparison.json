@@ -1,0 +1,192 @@
+﻿[
+    {
+        "Engine":  "Aspose",
+        "File":  "Polecenie wymiany wodomierza",
+        "ExactText":  false,
+        "SourceLength":  942,
+        "HtmlLength":  1158,
+        "FirstDiff":  0,
+        "SourceAtDiff":  "POLECENIEWYMIANYWODOMIERZA┌┐Kodpłatnika:[KL-kod]Na",
+        "HtmlAtDiff":  "CreatedwithanevaluationcopyofAspose.Words.Toremovealllimitations,youcanuseFreeTe"
+    },
+    {
+        "Engine":  "Aspose",
+        "File":  "Potwierdzenie salda",
+        "ExactText":  false,
+        "SourceLength":  648,
+        "HtmlLength":  864,
+        "FirstDiff":  0,
+        "SourceAtDiff":  "OdcinekANADAWCA:ADRESAT:PrzedsiębiorstwemEnergetyk",
+        "HtmlAtDiff":  "CreatedwithanevaluationcopyofAspose.Words.Toremovealllimitations,youcanuseFreeTe"
+    },
+    {
+        "Engine":  "Aspose",
+        "File":  "Sobótka",
+        "ExactText":  false,
+        "SourceLength":  6471,
+        "HtmlLength":  6687,
+        "FirstDiff":  0,
+        "SourceAtDiff":  "Strona1Nrpoprzedniejumowy:[KL-opis_1]UMOWAOZAOPATR",
+        "HtmlAtDiff":  "CreatedwithanevaluationcopyofAspose.Words.Toremovealllimitations,youcanuseFreeTe"
+    },
+    {
+        "Engine":  "Aspose",
+        "File":  "Sobótka_1",
+        "ExactText":  false,
+        "SourceLength":  2108,
+        "HtmlLength":  2322,
+        "FirstDiff":  0,
+        "SourceAtDiff":  "ZakładGOSPODARKIKOMUNALNEJimieszkaniowej„ślęża”55-",
+        "HtmlAtDiff":  "CreatedwithanevaluationcopyofAspose.Words.Toremovealllimitations,youcanuseFreeTe"
+    },
+    {
+        "Engine":  "Aspose",
+        "File":  "Sobótka_2",
+        "ExactText":  false,
+        "SourceLength":  13229,
+        "HtmlLength":  13445,
+        "FirstDiff":  0,
+        "SourceAtDiff":  "ZakładGOSPODARKIKOMUNALNEJimieszkaniowej„ślęża”55-",
+        "HtmlAtDiff":  "CreatedwithanevaluationcopyofAspose.Words.Toremovealllimitations,youcanuseFreeTe"
+    },
+    {
+        "Engine":  "Aspose",
+        "File":  "Sobótka_3",
+        "ExactText":  false,
+        "SourceLength":  2200,
+        "HtmlLength":  2416,
+        "FirstDiff":  0,
+        "SourceAtDiff":  "ZakładGOSPODARKIKOMUNALNEJimieszkaniowej„ślęża”55-",
+        "HtmlAtDiff":  "CreatedwithanevaluationcopyofAspose.Words.Toremovealllimitations,youcanuseFreeTe"
+    },
+    {
+        "Engine":  "RtfPipe",
+        "File":  "Polecenie wymiany wodomierza",
+        "ExactText":  true,
+        "SourceLength":  942,
+        "HtmlLength":  942,
+        "FirstDiff":  942,
+        "SourceAtDiff":  "",
+        "HtmlAtDiff":  ""
+    },
+    {
+        "Engine":  "RtfPipe",
+        "File":  "Potwierdzenie salda",
+        "ExactText":  true,
+        "SourceLength":  648,
+        "HtmlLength":  648,
+        "FirstDiff":  648,
+        "SourceAtDiff":  "",
+        "HtmlAtDiff":  ""
+    },
+    {
+        "Engine":  "RtfPipe",
+        "File":  "Sobótka",
+        "ExactText":  true,
+        "SourceLength":  6471,
+        "HtmlLength":  6471,
+        "FirstDiff":  6471,
+        "SourceAtDiff":  "",
+        "HtmlAtDiff":  ""
+    },
+    {
+        "Engine":  "RtfPipe",
+        "File":  "Sobótka_1",
+        "ExactText":  false,
+        "SourceLength":  2108,
+        "HtmlLength":  2107,
+        "FirstDiff":  70,
+        "SourceAtDiff":  "((71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330RE",
+        "HtmlAtDiff":  "🕿(71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330REGON930210654\u003chttp://www.zgkim"
+    },
+    {
+        "Engine":  "RtfPipe",
+        "File":  "Sobótka_2",
+        "ExactText":  false,
+        "SourceLength":  13229,
+        "HtmlLength":  13230,
+        "FirstDiff":  70,
+        "SourceAtDiff":  "((71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330RE",
+        "HtmlAtDiff":  "🕿(71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330REGON930210654http://www.zgkims"
+    },
+    {
+        "Engine":  "RtfPipe",
+        "File":  "Sobótka_3",
+        "ExactText":  false,
+        "SourceLength":  2200,
+        "HtmlLength":  2201,
+        "FirstDiff":  70,
+        "SourceAtDiff":  "((71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330RE",
+        "HtmlAtDiff":  "🕿(71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330REGON930210654http://www.zgkims"
+    },
+    {
+        "Engine":  "RtfPipePng",
+        "File":  "Polecenie wymiany wodomierza",
+        "ExactText":  true,
+        "SourceLength":  942,
+        "HtmlLength":  942,
+        "FirstDiff":  942,
+        "SourceAtDiff":  "",
+        "HtmlAtDiff":  ""
+    },
+    {
+        "Engine":  "RtfPipePng",
+        "File":  "Potwierdzenie salda",
+        "ExactText":  true,
+        "SourceLength":  648,
+        "HtmlLength":  648,
+        "FirstDiff":  648,
+        "SourceAtDiff":  "",
+        "HtmlAtDiff":  ""
+    },
+    {
+        "Engine":  "RtfPipePng",
+        "File":  "Sobótka",
+        "ExactText":  true,
+        "SourceLength":  6471,
+        "HtmlLength":  6471,
+        "FirstDiff":  6471,
+        "SourceAtDiff":  "",
+        "HtmlAtDiff":  ""
+    },
+    {
+        "Engine":  "RtfPipePng",
+        "File":  "Sobótka_1",
+        "ExactText":  false,
+        "SourceLength":  2108,
+        "HtmlLength":  2107,
+        "FirstDiff":  70,
+        "SourceAtDiff":  "((71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330RE",
+        "HtmlAtDiff":  "🕿(71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330REGON930210654\u003chttp://www.zgkim"
+    },
+    {
+        "Engine":  "RtfPipePng",
+        "File":  "Sobótka_2",
+        "ExactText":  false,
+        "SourceLength":  13229,
+        "HtmlLength":  13230,
+        "FirstDiff":  70,
+        "SourceAtDiff":  "((71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330RE",
+        "HtmlAtDiff":  "🕿(71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330REGON930210654http://www.zgkims"
+    },
+    {
+        "Engine":  "RtfPipePng",
+        "File":  "Sobótka_3",
+        "ExactText":  false,
+        "SourceLength":  2200,
+        "HtmlLength":  2201,
+        "FirstDiff":  70,
+        "SourceAtDiff":  "((71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330RE",
+        "HtmlAtDiff":  "🕿(71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330REGON930210654http://www.zgkims"
+    },
+    {
+        "Engine":  "RtfToHTML",
+        "File":  "Sobótka_1",
+        "ExactText":  false,
+        "SourceLength":  2108,
+        "HtmlLength":  2106,
+        "FirstDiff":  70,
+        "SourceAtDiff":  "((71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330RE",
+        "HtmlAtDiff":  "(71)31-62-286Fax.(71)31-62-293,NIP896-00-07-330REGON930210654\u003chttp://www.zgkims"
+    }
+]

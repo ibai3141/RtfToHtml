@@ -1,0 +1,57 @@
+Created with an evaluation copy of Aspose.Words. To remove all limitations, you can use Free Temporary License https://products.aspose.com/words/temporary-license/
+Strona 1
+Nr poprzedniej umowy: [KL-opis_1]
+UMOWA 
+O ZAOPATRZENIE W WODĘ WRAZ Z OWU
+Nr [PA-nr_zdarzenia]
+zawarta w dniu [PA-data_odniesienia] w Sobótce pomiędzy:
+GMINĄ SOBÓTKA, Rynek 1, 55-050 Sobótka, NIP GMINY: 896-10-00-784
+W imieniu, której działa Zakład Gospodarki Komunalnej i Mieszkaniowej „ŚLĘŻA”, w Sobótce ul. Czysta 7, wpisany do Gminnego Rejestru Zakładów Budżetowych pod nr I/21, REGON 930210654 prowadzącym działalność z zakresu zbiorowego zaopatrzenia w wodę i zbiorowego odprowadzania ścieków, zwanym w umowie „Dostawcą usług”, reprezentowanym przez pełnomocnika:
+DYREKTORA Grzegorza Białczaka
+aZwanym w umowie "Odbiorcą usług" reprezentowanym przez:Nazwisko i Imię/nazwa[KL-nazwa]Adres:[KL-adres_z_poczta] NIP:[KL-nip]PESEL:[KL-pesel]E-mail:[KL-mail]Nr dowodu osobistego[KL-dowod_osobisty]Przedstawiciel-Nazwisko i Imię:[KL-przedstawiciel]Adres do korespondencji:. Nazwisko i Imię/nazwa[KL-adres_korespondencyjny_nazwa]; [KL-adres_korespondencyjny_ulica] [KL-adres_korespondencyjny_miasto]Tel. kontaktowy[KL-telefon_kontaktowy]Tel. kont. i SMS[KL-telefon_sms]Nr Klienta[KL-kod]Nr Odbiorcy[OD-nr_odbiorcy]                                           § 1. Przedmiot umowy1. Przedmiotem umowy jest sprzedaż wody o jakości przeznaczonej do spożycia przez ludzi do nieruchomości położonej w miejscowości [OD-miasto], ulica [OD-ulica], nr domu lub działki [OD-nr_domu], [TA-odbiorcy]
+	
+2. 	Miejscem wykonania usługi dostarczenia wody jest pierwszy zawór za wodomierzem głównym zamontowanym w (budynku / studzience / inne miejsce) [PA-parametr_3]
+3. 	Odbiorca usług oświadcza, że przygotowane pomieszczenie, w którym jest zainstalowany wodomierz główny jest zabezpieczone przed zalaniem wodą, zamarzaniem oraz dostępem osób niepowołanych.
+4. 	Odbiorca usług oświadcza, że jest [PA-parametr_5],................................ (posiadany tytuł prawny do nieruchomości) nieruchomości, o której mowa w § 1 ust. 1 i ust. 4 umowy.
+	                                   § 2. Zakres odpowiedzialności
+Dostawca usług ma obowiązek zapewnić zdolność posiadanych przyłączy oraz urządzeń wodociągowych do prawidłowej realizacji usługi zaopatrzenia w wodę natomiast odbiorca usług odpowiada za zapewnienie niezawodnego działania posiadanych instalacji i przyłączy wodociągowych.
+	                                     § 3 Oświadczenia stron
+1. 	Odbiorca usług oświadcza, że woda dostarczana przez Przedsiębiorstwo będzie wykorzystywana na cele: 
+	1). Socjalno-bytowe - w ilości ok. [PA-parametr_1] m3  miesięcznie
+	2). Na potrzeby produkcji, w której woda wchodzi w skład albo bezpośredni kontakt z produktami żywnościowymi i farmaceutycznymi lub na cele konfekcjonowania - w ilości ok. xxx m3 miesięcznie
+2. 	Odbiorca usług oświadcza, że przygotowane pomieszczenie, w którym jest zainstalowany wodomierz główny jest zabezpieczone przed zalaniem wodą, zamarzaniem oraz dostępem osób niepowołanych.
+3. 	Dostarczanie wody do innych celów niż zadeklarowane w ust. 1, wymaga zmiany umowy.
+4. 	Dostawca usług oświadcza, że zobowiązuje się do zapewnienia zdolności posiadanych urządzeń wodociągowych do realizacji dostaw wody w ilości [PA-parametr_1] m3 na miesiąc i pod minimalnym ciśnieniem 0,5 Bara na zaworze za wodomierzem głównym.
+5. 	Dostawca usług oświadcza, że zobowiązuje się do zapewnienia dostawy wody o jakości przeznaczonej do spożycia przez ludzi i o parametrach nieprzekraczających wymienionych wartości: żelazo: 0,2 mg Fe/l; mangan: 0,05 mg Mn/l; jon amonowy: 0,05 mg NH4+/l; azotany: 0,05 mg NO3-/l; azotyny: 0,05 mg NO2-/l: fluorki 1,50 mg F/l; barwa: akceptowalna bez nieprawidłowych zmian; mętność: 1 NTU; pH: 6,5 - 9,5;, w ilości [PA-parametr_1] m3 na miesiąc.
+6. 	Dostawca zakupi, zainstaluje i utrzyma na własny koszt wodomierz główny w pomieszczeniu przygotowanym przez Odbiorcę usług. Wodomierz główny stanowi własność Przedsiębiorstwa.
+	                                      § 4. Rozliczenia
+1. 	Do rozliczeń z tytułu niniejszej umowy mają zastosowanie ceny i stawki opłat oraz zasady ich stosowania zawarte w obowiązującej taryfie w jednomiesięcznych okresach obrachunkowych, maksymalny okres rozliczeniowy do sześciu miesięcy.
+2. 	Na dzień zawarcia umowy ceny i stawki opłat kształtują się w wysokości:
+	
+załącznik nr 1
+	
+[TA-odbiorcy_wod_opl]
+[TA-taryfy]
+	
+	Typ Odbiorcy: [OD-podzial_1]
+3. 	Grupa taryfowa:   [OD-taryfa]
+4. 	Naliczane usługi: [OD-naliczane_uslugi]
+5. 	Wyciąg z obowiązującej w dniu zawarcia umowy taryfy obejmujący zestawienie cen i stawek opłat oraz warunków ich stosowania określa załącznik Nr 1 do umowy.
+	                                    § 5. Postanowienia końcowe
+1. 	Umowa zostaje zawarta na czas nieokreślony/ określony od dnia [PA-data_od] do [PA-data_do]
+2. 	       Integralną część niniejszej Umowy stanowią „Ogólne Warunki Umowy o zaopatrzenie w wodę lub odprowadzanie ścieków” (załącznik Nr 2), które zostały przedłożone Odbiorcy usług przed zawarciem Umowy. Odbiorca usług oświadcza, iż zapoznał się z ich treścią oraz zobowiązuje się przestrzegać ich postanowień.
+3. 	       Odbiorca usług akceptuje fakt, iż zmiana postanowień „Ogólnych Warunków Umowy o zaopatrzenie w wodę lub odprowadzanie ścieków” wchodzi w życie w razie przedłożenia Odbiorcy usług nowej treści „Ogólnych Warunków Umowy o zaopatrzenie w wodę lub odprowadzanie ścieków”, o ile Odbiorca usług nie wypowie Umowy w terminie jej wypowiedzenia. Zmiana postanowień „Ogólnych Warunków Umowy o zaopatrzenie w wodę lub odprowadzanie ścieków” musi zostać doręczona Odbiorcy usług przynajmniej na miesiąc przed planowaną datą wejścia w życie oraz powinna wskazywać proponowane zmiany wraz z informacją o prawie do wypowiedzenia Umowy,.
+4. 	       Zmiana „Ogólnych Warunków Umowy o zaopatrzenie w wodę lub odprowadzanie ścieków” w sposób opisany powyżej może nastąpić wyłącznie w przypadku wystąpienia ważnych powodów, takich jak: zmiana przepisów prawa dotyczących zbiorowego zaopatrzenia w wodę lub zbiorowego odprowadzania ścieków, wydanie prawomocnego orzeczenia przez organy administracji publicznej lub sądy stwierdzającego niezgodność postanowień „Ogólnych Warunków Umowy o zaopatrzenie w wodę lub odprowadzanie ścieków” z przepisami prawa.
+5. 	       Odbiorca usług oświadcza, iż przed zawarciem Umowy został poinformowany o obowiązywaniu „Regulaminu dostarczania wody i odprowadzania ścieków na terenie Miasta i Gminy Sobótka” oraz sposobach dostępu do jego treści.
+6. 	       Niniejsza Umowa indywidualna wraz z Ogólnymi Warunki Umowy stanowią umowę o zaopatrzenie w wodę lub odprowadzanie ścieków w rozumieniu art. 6 Ustawy.
+7. 	       Dostawca usług informuje, że podane przez Odbiorcę Usług dane osobowe będą przetwarzane w celu podjęcia niezbędnych działań związanych z wykonywaniem Umowy. Administratorem danych jest Dostawca. Odbiorcy Usług przysługuje prawo wglądu do danych i ich poprawiania.
+8. 	       Zakład Gospodarki Komunalnej i Mieszkaniowej zwany w umowie dostawcą usług oświadcza, iż z dniem 1 stycznia 2017 r. nastąpiła Centralizacja rozliczeń VAT Miasta i Gminy Sobótka, pod które podlega. W związku z powyższym począwszy od 1 stycznia 2017r. formalną stroną stosunków cywilnoprawnych w tym wystawianych i otrzymywanych dokumentów, w szczególności związanych z dostawą lub nabyciem towarów oraz ze świadczeniem usług będzie Miasto i Gmina Sobótka.
+	Z uwagi na fakt, iż Miasto i Gmina Sobótka jest podatnikiem podatku VAT od 1 stycznia  2017r. do opłat, wynikających z realizacji niniejszej umowy zostanie doliczony podatek VAT wg aktualnie obowiązującej stawki.”
+9. 	       Z datą zawarcia niniejszej umowy tracą moc dotychczasowe uregulowania umowne w zakresie dostawy wody i odbioru ścieków.
+  DOSTAWCA USŁUG                                ODBIORCA USŁUG  ……………………                               …………………………
+Strona 2
+Niniejszą umowę sporządził: [PA-wystawca]
+
+
+Evaluation Only. Created with Aspose.Words. Copyright 2003-2026 Aspose Pty Ltd.
+
