@@ -1,18 +1,0 @@
-Created with an evaluation copy of Aspose.Words. To remove all limitations, you can use Free Temporary License https://products.aspose.com/words/temporary-license/
-Odcinek A
-NADAWCA:ADRESAT:   Przedsiębiorstwem Energetyki [KL-nazwa]          Cieplnej Sp. z o.o., [KL-adres_z_poczta]19-400 Olecko, ul. Kolejowa 31/25NIP: [KL-nip] 
-Na podstawie art.26 ust.1 p.2 Ustawa o rachunkowości (Dz.U.nr 152/09 poz.12 ze zmianami) wzywamy Państwa do potwierdzenia na odcinku B w terminie 14 dni od daty wystawienia niniejszego wezwania, następujących sald figurujących w naszych księgach na dzień  [PA-data_odniesienia].
-Jednocześnie prosimy o terminowe regulowanie należności.
-
-Kod płatnika: [KL-kod]
-Prosimy o potwierdzenie salda przez osobę umocowaną do reprezentacji bądź do prowadzenia ksiąg rachunkowych.
-[TA-saldo_a]
-
-Główny Księgowy
-Dnia:  [PA-biezaca_data].     [PA-wystawca]
- 
-Dnia: …………………………….       _________________________
-
-
-Evaluation Only. Created with Aspose.Words. Copyright 2003-2026 Aspose Pty Ltd.
-
