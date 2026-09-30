@@ -1,6 +1,8 @@
 # RtfToHTML
 
-A Windows desktop app for converting RTF documents to standalone HTML. Open it with a double click to select a file, or call it from another application with an input RTF and an output folder.
+A Windows desktop app for converting RTF documents to standalone HTML. The customer package includes both 32-bit (x86) and 64-bit (x64) executables. Open the version matching Windows to select a file or folder, or call it from another application with an input and output folder.
+
+Documentation: [user guide](docs/USER_GUIDE.md) and [technical guide](docs/TECHNICAL_GUIDE.md).
 
 ## For customers
 
