@@ -31,7 +31,7 @@ Git Bash uses Unix-style paths; Windows `C:` is `/c/`:
 cd /c/Users/Ibai/RtfToHtml
 
 # Convert top-level RTF files in a folder
-./artifacts/publish/win-x64/RtfToHTML.exe "/c/Users/Ibai/Documents/RTF files" "/c/Users/Ibai/Documents/HTML"
+./artifacts/publish/win-x64/RtfToHTML.exe "/c/Users/Ibai/Documents/RTF" "/c/Users/Ibai/Documents/HTML"
 
 # Convert one RTF file
 ./artifacts/publish/win-x64/RtfToHTML.exe "/c/Users/Ibai/Documents/Contract.rtf" "/c/Users/Ibai/Documents/HTML"
@@ -45,7 +45,7 @@ Replace the example paths with yours. Keep quotes around paths containing spaces
 cd /d C:\Users\Ibai\RtfToHtml
 
 REM Convert top-level RTF files in a folder
-artifacts\publish\win-x64\RtfToHTML.exe "C:\Users\Ibai\Documents\RTF files" "C:\Users\Ibai\Documents\HTML"
+artifacts\publish\win-x64\RtfToHTML.exe "C:\Users\Ibai\Documents\RTF" "C:\Users\Ibai\Documents\HTML"
 
 REM Convert one RTF file
 artifacts\publish\win-x64\RtfToHTML.exe "C:\Users\Ibai\Documents\Contract.rtf" "C:\Users\Ibai\Documents\HTML"
@@ -62,7 +62,7 @@ echo %ERRORLEVEL%
 Set-Location 'C:\Users\Ibai\RtfToHtml'
 
 # Convert top-level RTF files in a folder
-& '.\artifacts\publish\win-x64\RtfToHTML.exe' 'C:\Users\Ibai\Documents\RTF files' 'C:\Users\Ibai\Documents\HTML'
+& '.\artifacts\publish\win-x64\RtfToHTML.exe' 'C:\Users\Ibai\Documents\RTF' 'C:\Users\Ibai\Documents\HTML'
 
 # Convert one RTF file
 & '.\artifacts\publish\win-x64\RtfToHTML.exe' 'C:\Users\Ibai\Documents\Contract.rtf' 'C:\Users\Ibai\Documents\HTML'
