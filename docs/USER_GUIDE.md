@@ -75,6 +75,19 @@ The `&` call operator runs a program whose path is quoted.
 
 Exit codes: `0` means success (including a folder with no RTF files), `1` means a conversion/path error, and `2` means the argument count is incorrect. Batch mode may convert some files and still return `1` if others fail. Errors are written to `stderr`.
 
+The app does not print a success message or the exit code automatically. Query the code using the syntax for the shell you are actually running, immediately after the converter finishes:
+
+- **Git Bash:** `echo $?`
+- **CMD:** `echo %ERRORLEVEL%`
+- **PowerShell:** `$LASTEXITCODE`
+
+`$LASTEXITCODE` is a PowerShell variable. It is empty in Git Bash, so use `echo $?` there. In PowerShell, invoke the executable directly with `&`; if you start it with `Start-Process`, capture and inspect the process instead:
+
+```powershell
+$process = Start-Process '.\artifacts\publish\win-x64\RtfToHTML.exe' -ArgumentList '"C:\Docs\Contract.rtf"', '"C:\Docs\HTML"' -Wait -PassThru
+$process.ExitCode
+```
+
 ## Troubleshooting
 
 - Create the destination folder before conversion.
