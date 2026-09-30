@@ -49,6 +49,20 @@ public sealed class OutputLocationPreferences
         {
             var directory = Path.GetDirectoryName(Path.GetFullPath(inputPath));
             if (directory is not null && Directory.Exists(directory))
+                RememberInputDirectory(directory);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
+        {
+            // Remembering a folder is a convenience; it must not block file selection.
+        }
+    }
+
+    public void RememberInputDirectory(string inputDirectory)
+    {
+        try
+        {
+            var directory = Path.GetFullPath(inputDirectory);
+            if (Directory.Exists(directory))
                 WriteSettings(LastOutputDirectory, directory);
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)

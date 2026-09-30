@@ -6,11 +6,11 @@ A Windows desktop app for converting RTF documents to standalone HTML. Open it w
 
 1. Extract the ZIP to a folder.
 2. Open `RtfToHTML.exe`.
-3. Click **Browse...** and select an `.rtf` document.
-4. Click **Choose folder...** and select where to save the result.
-5. Click **Convert to HTML**. The HTML name is set automatically to match the RTF file. Click **Open HTML** to review it.
+3. Choose **Single RTF file** to convert one document, or **Folder (top level only)** to convert all `.rtf` files directly inside a selected folder.
+4. Select the source and destination folders as prompted.
+5. Click **Convert to HTML**. Each output uses its RTF file's name with the `.html` extension. Click **Open HTML** to review a single-file result.
 
-The output name cannot be edited. For `Contract.rtf`, the app creates `Contract.html` in the selected folder. The original RTF is kept and images are embedded in the HTML. The app asks before replacing an existing HTML. Use your browser's print preview to check page breaks and margins.
+The output name cannot be edited. For `Contract.rtf`, the app creates `Contract.html` in the selected folder. Folder mode processes only the selected folder's direct child `.rtf` files (extension matching is case-insensitive); it skips subfolders and all other files. The original RTF files are kept and images are embedded in the HTML. The app asks before replacing existing HTML files. Use your browser's print preview to check page breaks and margins.
 
 The app remembers the last output folder in `%LOCALAPPDATA%\\RtfToHTML\\settings.json`. The RTF picker remembers its last folder, and the destination picker remembers its last folder independently. Both preferences persist after closing the app. If the saved folder is no longer available, the app falls back to the RTF's folder.
 
@@ -18,9 +18,10 @@ The app remembers the last output folder in `%LOCALAPPDATA%\\RtfToHTML\\settings
 
 ```text
 RtfToHTML.exe "C:\\Documents\\Contract.rtf" "C:\\Documents\\HTML"
+RtfToHTML.exe "C:\\Documents\\RTF" "C:\\Documents\\HTML"
 ```
 
-The first argument is the input RTF file. The second is an existing destination folder. The app creates an HTML file there using the input file's name, replacing its extension with `.html`. With no arguments, the app opens its window. With two arguments, it converts without showing a window and replaces an existing HTML without prompting. The calling application should wait for it to exit. Exit codes: `0` success, `1` conversion or file error, `2` invalid arguments. Errors are written to stderr.
+The first argument can be an input RTF file or a source folder. The second is an existing destination folder. A source folder converts only its direct child `.rtf` files. Each HTML uses the corresponding RTF name. With no arguments, the app opens its window. With two arguments, it converts without showing a window and replaces existing HTML files without prompting. The calling application should wait for it to exit. Exit codes: `0` success, `1` conversion or file error, `2` invalid arguments. Errors are written to stderr.
 
 ## Build and publish
 
@@ -42,7 +43,7 @@ dotnet run --project tests/Regression -- .
 dotnet run --project tests/GuiSmoke -- .
 ```
 
-The regression tests check left, centered and right table alignment, including nested tables, and verify template fields, table counts and images for the six sample documents. The GUI smoke test checks the fixed output name, folder selection, preferences, and error handling. Edge and Playwright are test-only dependencies; the converter does not use them.
+The regression tests check left, centered and right table alignment, including nested tables, and verify template fields, table counts and images for the six sample documents. The GUI smoke test checks single-file and top-level folder conversion, preferences, and error handling. Edge and Playwright are test-only dependencies; the converter does not use them.
 
 ## Conversion notes
 

@@ -19,7 +19,22 @@ internal static class Program
             Console.Error.WriteLine("Usage: RtfToHTML.exe <input.rtf> <output_folder>");
             return 2;
         }
-        try { FileConversion.Convert(args[0], args[1]); return 0; }
+        try
+        {
+            if (Directory.Exists(args[0]))
+            {
+                var batch = FolderConversion.ConvertTopLevel(args[0], args[1]);
+                if (batch.Failures.Count > 0)
+                {
+                    foreach (var failure in batch.Failures)
+                        Console.Error.WriteLine($"{failure.FileName}: {failure.Error}");
+                    return 1;
+                }
+                return 0;
+            }
+            FileConversion.Convert(args[0], args[1]);
+            return 0;
+        }
         catch (Exception ex) { Console.Error.WriteLine("Conversion failed: " + ex.Message); return 1; }
     }
 }
