@@ -64,9 +64,10 @@ public sealed class MainForm : Form
     }
     private void SelectInput()
     {
-        using var dialog = new OpenFileDialog { Title = "Select an RTF document", Filter = "RTF document (*.rtf)|*.rtf", CheckFileExists = true, Multiselect = false };
+        using var dialog = new OpenFileDialog { Title = "Select an RTF document", Filter = "RTF document (*.rtf)|*.rtf", CheckFileExists = true, Multiselect = false, InitialDirectory = preferences.SuggestInputDirectory() };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
         input.Text = dialog.FileName;
+        preferences.RememberInputFile(dialog.FileName);
         output.Text = preferences.SuggestOutputDirectory(dialog.FileName);
     }
     private void SelectOutput()

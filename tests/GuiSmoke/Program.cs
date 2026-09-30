@@ -1,4 +1,4 @@
-﻿using RtfToHtml;
+using RtfToHtml;
 internal static class Program
 {
  [STAThread]
@@ -38,19 +38,24 @@ internal static class Program
   while(!convert.Enabled && DateTime.UtcNow<until) { Application.DoEvents(); Thread.Sleep(10); }
   if(File.Exists(Path.Combine(invalidFolder,"README.html"))||open.Enabled||!status.Text.Contains("valid RTF")) throw new Exception("Invalid file validation failed");
   var preferenceDir=Path.Combine(root,"artifacts","preference-test-"+Guid.NewGuid().ToString("N"));
+  var inputPreferenceDir=Path.Combine(root,"artifacts","input-preference-test-"+Guid.NewGuid().ToString("N"));
   Directory.CreateDirectory(preferenceDir);
+  Directory.CreateDirectory(inputPreferenceDir);
   var settingsFile=Path.Combine(root,"artifacts","settings-test-"+Guid.NewGuid().ToString("N"),"settings.json");
   var firstRun=new OutputLocationPreferences(settingsFile);
   if(firstRun.SuggestOutputDirectory(Path.Combine(root,"samples","first.rtf"))!=Path.Combine(root,"samples")) throw new Exception("Initial destination fallback failed");
+  firstRun.RememberInputFile(Path.Combine(inputPreferenceDir,"previous.rtf"));
   firstRun.RememberOutputDirectory(preferenceDir);
   var secondRun=new OutputLocationPreferences(settingsFile);
   if(secondRun.LastOutputDirectory!=preferenceDir) throw new Exception("Output folder did not persist between app runs");
+  if(secondRun.LastInputDirectory!=inputPreferenceDir||secondRun.SuggestInputDirectory()!=inputPreferenceDir) throw new Exception("Input folder did not persist between app runs");
   if(secondRun.SuggestOutputDirectory(Path.Combine(root,"samples","second.rtf"))!=preferenceDir) throw new Exception("Next RTF did not reuse the remembered output folder");
   Directory.Delete(preferenceDir);
-  if(secondRun.LastOutputDirectory!=null||secondRun.SuggestOutputDirectory(Path.Combine(root,"samples","third.rtf"))!=Path.Combine(root,"samples")) throw new Exception("Unavailable saved folder fallback failed");
-  Console.WriteLine("PASS: GUI selects an output folder and creates input-basename HTML");
-  Console.WriteLine("PASS: invalid destination and RTF validation");
-  Console.WriteLine("PASS: output folder preference persists across instances and falls back when unavailable");
+  if(secondRun.LastOutputDirectory!=null||secondRun.SuggestOutputDirectory(Path.Combine(root,"samples","third.rtf"))!=Path.Combine(root,"samples")) throw new Exception("Unavailable output folder fallback failed");
+  if(secondRun.LastInputDirectory!=inputPreferenceDir) throw new Exception("Saving the output folder erased the input folder preference");
+  Directory.Delete(inputPreferenceDir);
+  if(secondRun.LastInputDirectory!=null||secondRun.SuggestInputDirectory()!=Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) throw new Exception("Unavailable input folder fallback failed");
+  Console.WriteLine("PASS: input and output folder preferences persist independently and fall back when unavailable");
   form.Close();
  }
 }
