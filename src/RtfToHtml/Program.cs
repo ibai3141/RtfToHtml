@@ -16,7 +16,7 @@ internal static class Program
         if (!Console.IsErrorRedirected) AttachConsole(unchecked((uint)-1));
         if (args.Length != 2)
         {
-            Console.Error.WriteLine("Usage: RtfToHTML.exe <input.rtf> <output.html>");
+            Console.Error.WriteLine("Usage: RtfToHTML.exe <input.rtf> <output_folder>");
             return 2;
         }
         try { FileConversion.Convert(args[0], args[1]); return 0; }

@@ -32,19 +32,17 @@ public sealed class OutputLocationPreferences
         }
     }
 
-    public string SuggestOutputPath(string inputPath)
+    public string SuggestOutputDirectory(string inputPath)
     {
-        var fileName = Path.GetFileNameWithoutExtension(inputPath) + ".html";
-        var directory = LastOutputDirectory ?? Path.GetDirectoryName(Path.GetFullPath(inputPath))!;
-        return Path.Combine(directory, fileName);
+        return LastOutputDirectory ?? Path.GetDirectoryName(Path.GetFullPath(inputPath))!;
     }
 
-    public void RememberOutputPath(string outputPath)
+    public void RememberOutputDirectory(string outputDirectory)
     {
         try
         {
-            var directory = Path.GetDirectoryName(Path.GetFullPath(outputPath));
-            if (directory is null || !Directory.Exists(directory)) return;
+            var directory = Path.GetFullPath(outputDirectory);
+            if (!Directory.Exists(directory)) return;
             var settingsDirectory = Path.GetDirectoryName(settingsPath)!;
             Directory.CreateDirectory(settingsDirectory);
             var temporaryPath = settingsPath + ".tmp";

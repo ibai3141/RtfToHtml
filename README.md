@@ -1,26 +1,26 @@
-# RtfToHTML
+﻿# RtfToHTML
 
-A Windows desktop app for converting RTF documents to standalone HTML. The app can be opened with a double click for file selection, or called from another application with two file paths.
+A Windows desktop app for converting RTF documents to standalone HTML. Open it with a double click to select a file, or call it from another application with an input RTF and an output folder.
 
 ## For customers
 
 1. Extract the ZIP to a folder.
 2. Open `RtfToHTML.exe`.
-3. Click **Browse…** and select an `.rtf` document.
-4. Click **Save as…** and choose where to save the `.html` file.
-5. Click **Convert to HTML**. When it finishes, click **Open HTML** to review the result.
+3. Click **Browse...** and select an `.rtf` document.
+4. Click **Choose folder...** and select where to save the result.
+5. Click **Convert to HTML**. The HTML name is set automatically to match the RTF file. Click **Open HTML** to review it.
 
-The original RTF is kept. Images are embedded in the HTML. If the output file already exists, the app asks before replacing it. Use your browser's print preview to check page breaks and margins.
+The output name cannot be edited. For `Contract.rtf`, the app creates `Contract.html` in the selected folder. The original RTF is kept and images are embedded in the HTML. The app asks before replacing an existing HTML. Use your browser's print preview to check page breaks and margins.
 
-The app remembers the last output folder in `%LOCALAPPDATA%\RtfToHTML\settings.json`. When you select another RTF, it suggests an HTML file with the same name in that folder. The **Save as…** dialog also opens there. If the saved folder is no longer available, the app falls back to the RTF's folder.
+The app remembers the last output folder in `%LOCALAPPDATA%\\RtfToHTML\\settings.json`. When you select another RTF, it suggests that folder. The **Choose folder...** dialog also opens there. If the saved folder is no longer available, the app falls back to the RTF's folder.
 
 ## Command-line integration
 
 ```text
-RtfToHTML.exe "C:\\Documents\\input.rtf" "C:\\Documents\\output.html"
+RtfToHTML.exe "C:\\Documents\\Contract.rtf" "C:\\Documents\\HTML"
 ```
 
-With no arguments, the app opens its window. With two paths, it converts without showing a window and replaces an existing output file. The calling application should wait for it to exit. Exit codes: `0` success, `1` conversion or file error, `2` invalid arguments. Errors are written to stderr.
+The first argument is the input RTF file. The second is an existing destination folder. The app creates an HTML file there using the input file's name, replacing its extension with `.html`. With no arguments, the app opens its window. With two arguments, it converts without showing a window and replaces an existing HTML without prompting. The calling application should wait for it to exit. Exit codes: `0` success, `1` conversion or file error, `2` invalid arguments. Errors are written to stderr.
 
 ## Build and publish
 
@@ -42,7 +42,7 @@ dotnet run --project tests/Regression -- .
 dotnet run --project tests/GuiSmoke -- .
 ```
 
-The regression tests check left, centered and right table alignment, including nested tables, and verify template fields, table counts and images for the six sample documents. The GUI smoke test exercises validation, conversion and saved output-folder preferences. Edge and Playwright are test-only dependencies; the converter does not use them.
+The regression tests check left, centered and right table alignment, including nested tables, and verify template fields, table counts and images for the six sample documents. The GUI smoke test checks the fixed output name, folder selection, preferences, and error handling. Edge and Playwright are test-only dependencies; the converter does not use them.
 
 ## Conversion notes
 

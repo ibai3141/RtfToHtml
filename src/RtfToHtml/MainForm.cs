@@ -4,9 +4,9 @@ public sealed class MainForm : Form
 {
     private readonly OutputLocationPreferences preferences = new();
     private readonly TextBox input = new() { Name = "InputPath", Dock = DockStyle.Fill, AccessibleName = "RTF file" };
-    private readonly TextBox output = new() { Name = "OutputPath", Dock = DockStyle.Fill, AccessibleName = "Output HTML file" };
-    private readonly Button browse = new() { Text = "Browse…", AutoSize = true };
-    private readonly Button save = new() { Text = "Save as…", AutoSize = true };
+    private readonly TextBox output = new() { Name = "OutputPath", Dock = DockStyle.Fill, AccessibleName = "Output folder", ReadOnly = true, TabStop = false };
+    private readonly Button browse = new() { Text = "Browse...", AutoSize = true };
+    private readonly Button save = new() { Text = "Choose folder...", AutoSize = true };
     private readonly Button convert = new() { Name = "Convert", Text = "Convert to HTML", AutoSize = true, Padding = new Padding(18, 8, 18, 8) };
     private readonly Button open = new() { Name = "OpenHtml", Text = "Open HTML", AutoSize = true, Enabled = false, Padding = new Padding(12, 8, 12, 8) };
     private readonly Label status = new() { Name = "Status", Text = "Select a document to get started.", AutoSize = true, MaximumSize = new Size(660, 0), Dock = DockStyle.Fill };
@@ -31,7 +31,7 @@ public sealed class MainForm : Form
         layout.Controls.Add(new Label { Text = "Choose your document and where to save the result.", AutoSize = true, Margin = new Padding(3, 4, 3, 24) }, 0, 1);
         layout.Controls.Add(new Label { Text = "1   RTF document", AutoSize = true }, 0, 2);
         layout.Controls.Add(PathRow(input, browse), 0, 3);
-        layout.Controls.Add(new Label { Text = "2   Output HTML file", AutoSize = true, Margin = new Padding(3, 18, 3, 3) }, 0, 4);
+        layout.Controls.Add(new Label { Text = "2   Destination folder", AutoSize = true, Margin = new Padding(3, 18, 3, 3) }, 0, 4);
         layout.Controls.Add(PathRow(output, save), 0, 5);
         var actions = new FlowLayoutPanel { AutoSize = true, Dock = DockStyle.Fill, Margin = new Padding(0, 22, 0, 12) };
         convert.BackColor = Color.FromArgb(37, 99, 235);
@@ -67,28 +67,23 @@ public sealed class MainForm : Form
         using var dialog = new OpenFileDialog { Title = "Select an RTF document", Filter = "RTF document (*.rtf)|*.rtf", CheckFileExists = true, Multiselect = false };
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
         input.Text = dialog.FileName;
-        output.Text = preferences.SuggestOutputPath(dialog.FileName);
+        output.Text = preferences.SuggestOutputDirectory(dialog.FileName);
     }
     private void SelectOutput()
     {
-        using var dialog = new SaveFileDialog { Title = "Save HTML as", Filter = "HTML document (*.html)|*.html", DefaultExt = "html", AddExtension = true, OverwritePrompt = false };
+        using var dialog = new FolderBrowserDialog { Description = "Choose the folder where the HTML file will be saved.", UseDescriptionForTitle = true, ShowNewFolderButton = true };
         try
         {
-            if (!string.IsNullOrWhiteSpace(output.Text))
-            {
-                var path = Path.GetFullPath(output.Text.Trim());
-                dialog.FileName = Path.GetFileName(path);
-                if (preferences.LastOutputDirectory is { } rememberedDirectory)
-                    dialog.InitialDirectory = rememberedDirectory;
-                else if (Directory.Exists(Path.GetDirectoryName(path)))
-                    dialog.InitialDirectory = Path.GetDirectoryName(path);
-            }
+            var startingDirectory = preferences.LastOutputDirectory;
+            if (startingDirectory is null && !string.IsNullOrWhiteSpace(output.Text) && Directory.Exists(output.Text))
+                startingDirectory = output.Text;
+            if (startingDirectory is not null) dialog.SelectedPath = startingDirectory;
         }
         catch (ArgumentException) { }
         if (dialog.ShowDialog(this) == DialogResult.OK)
         {
-            output.Text = dialog.FileName;
-            preferences.RememberOutputPath(dialog.FileName);
+            output.Text = dialog.SelectedPath;
+            preferences.RememberOutputDirectory(dialog.SelectedPath);
         }
     }
     private void ResetResult()
@@ -104,20 +99,19 @@ public sealed class MainForm : Form
         try
         {
             if (string.IsNullOrWhiteSpace(input.Text) || string.IsNullOrWhiteSpace(output.Text))
-                throw new ArgumentException("Select the RTF document and the output HTML path.");
+                throw new ArgumentException("Select the RTF document and the destination folder.");
             var source = Path.GetFullPath(input.Text.Trim());
-            var destination = Path.GetFullPath(output.Text.Trim());
-            if (!string.Equals(Path.GetExtension(destination), ".html", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Path.GetExtension(destination), ".htm", StringComparison.OrdinalIgnoreCase))
-                throw new ArgumentException("The output file must have an .html or .htm extension.");
+            var destinationFolder = Path.GetFullPath(output.Text.Trim());
+            if (!Directory.Exists(destinationFolder))
+                throw new DirectoryNotFoundException("The destination folder does not exist. Choose an existing folder.");
+            var destination = Path.Combine(destinationFolder, Path.GetFileNameWithoutExtension(source) + ".html");
             if (File.Exists(destination) && MessageBox.Show(this, "The HTML file already exists. Do you want to replace it?", "Confirm replacement", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
             ResetResult();
             SetBusy(true);
             status.Text = "Converting document…";
-            await Task.Run(() => FileConversion.Convert(source, destination));
-            preferences.RememberOutputPath(destination);
-            generatedFile = destination;
+            generatedFile = await Task.Run(() => FileConversion.Convert(source, destinationFolder));
+            preferences.RememberOutputDirectory(destinationFolder);
             open.Enabled = true;
             status.ForeColor = Color.FromArgb(21, 128, 61);
             status.Text = "HTML created successfully. Click Open HTML to view it.";
